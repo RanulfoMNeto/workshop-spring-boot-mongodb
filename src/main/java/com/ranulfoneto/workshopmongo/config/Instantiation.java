@@ -5,8 +5,8 @@ import java.util.Arrays;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.ranulfoneto.workshopmongo.domain.User;
-import com.ranulfoneto.workshopmongo.repository.UserRepository;
+import com.ranulfoneto.workshopmongo.models.User;
+import com.ranulfoneto.workshopmongo.repositories.UserRepository;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {

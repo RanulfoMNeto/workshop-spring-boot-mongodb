@@ -1,4 +1,4 @@
-package com.ranulfoneto.workshopmongo.domain;
+package com.ranulfoneto.workshopmongo.models;
 
 import java.io.Serializable;
 

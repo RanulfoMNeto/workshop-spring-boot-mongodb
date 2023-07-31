@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ranulfoneto.workshopmongo.domain.User;
-import com.ranulfoneto.workshopmongo.repository.UserRepository;
+import com.ranulfoneto.workshopmongo.models.User;
+import com.ranulfoneto.workshopmongo.repositories.UserRepository;
 
 @Service
 public class UserService {
