@@ -1,5 +1,6 @@
 package com.ranulfoneto.workshopmongo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ public class PostService {
     public Post findById(String id) {
         Optional<Post> post = postRepository.findById(id);
         return post.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+    }
+
+    public List<Post> findByTitleContaining(String text) {
+        return postRepository.findByTitleContainingIgnoreCase(text);
     }
 
 }
