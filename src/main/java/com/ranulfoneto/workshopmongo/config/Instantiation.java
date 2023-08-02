@@ -7,7 +7,6 @@ import java.util.TimeZone;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.ranulfoneto.workshopmongo.dtos.AuthorDTO;
 import com.ranulfoneto.workshopmongo.dtos.CommentDTO;
 import com.ranulfoneto.workshopmongo.models.Post;
 import com.ranulfoneto.workshopmongo.models.User;
