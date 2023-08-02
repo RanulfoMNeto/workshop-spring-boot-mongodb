@@ -11,16 +11,19 @@ import com.ranulfoneto.workshopmongo.models.Post;
 import com.ranulfoneto.workshopmongo.models.User;
 import com.ranulfoneto.workshopmongo.repositories.PostRepository;
 import com.ranulfoneto.workshopmongo.repositories.UserRepository;
+import com.ranulfoneto.workshopmongo.services.UserService;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
 
     private UserRepository userRepository;
     private PostRepository postRepository;
+    private UserService userService;
 
-    public Instantiation(UserRepository userRepository, PostRepository postRepository) {
+    public Instantiation(UserRepository userRepository, PostRepository postRepository, UserService userService) {
         this.userRepository = userRepository;
         this.postRepository = postRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -35,11 +38,12 @@ public class Instantiation implements CommandLineRunner {
         User maria = new User(null, "Maria Brown", "maria@gmail.com");
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
-        
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria);
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", maria);
-        
+
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+        
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", userService.toAuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", userService.toAuthorDTO(maria));
+        
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
     

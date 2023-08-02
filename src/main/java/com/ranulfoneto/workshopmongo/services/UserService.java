@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.ranulfoneto.workshopmongo.dtos.AuthorDTO;
 import com.ranulfoneto.workshopmongo.dtos.UserDTO;
 import com.ranulfoneto.workshopmongo.models.User;
 import com.ranulfoneto.workshopmongo.repositories.UserRepository;
@@ -43,6 +44,10 @@ public class UserService {
 
     public UserDTO toDTO(User user) {
         return new UserDTO(user.getId(), user.getName(), user.getEmail());
+    }
+
+    public AuthorDTO toAuthorDTO(User user) {
+        return new AuthorDTO(user.getId(), user.getName());
     }
 
     public User update(User user) {
