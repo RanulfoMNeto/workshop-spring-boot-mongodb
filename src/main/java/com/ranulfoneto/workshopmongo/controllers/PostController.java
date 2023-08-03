@@ -1,5 +1,6 @@
 package com.ranulfoneto.workshopmongo.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -29,10 +30,22 @@ public class PostController {
         return ResponseEntity.ok().body(post);
     }
 
-    @GetMapping
+    @GetMapping("/search")
     public ResponseEntity<List<Post>> findByTitleContaining(@RequestParam(value = "search", defaultValue = "") String text) {
         text = URL.decodeParam(text);
         List<Post> posts = postService.findByTitleContaining(text);
+        return ResponseEntity.ok().body(posts);
+    }
+
+    @GetMapping("/fullsearch")
+    public ResponseEntity<List<Post>> fullSearch(
+            @RequestParam(value = "search", defaultValue = "") String text,
+            @RequestParam(value = "minDate", defaultValue = "") String minDate,
+            @RequestParam(value = "maxDate", defaultValue = "") String maxDate) {
+        text = URL.decodeParam(text);
+        Date min = URL.convertDate(minDate, new Date(0L));
+        Date max = URL.convertDate(maxDate, new Date());
+        List<Post> posts = postService.fullSearch(text, min, max);
         return ResponseEntity.ok().body(posts);
     }
 
